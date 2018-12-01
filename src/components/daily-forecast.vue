@@ -20,10 +20,11 @@
 
         <div class="con-2">
             <div class="sec-3">
-              <p><img src="https://png.icons8.com/ios-glyphs/50/ffffff/summer.png"> Sunrise: </p>
-              <p><img src="https://png.icons8.com/windows/50/ffffff/sunset.png"> Sunset: </p>
-              <p><img src="https://png.icons8.com/android/50/ffffff/bright-moon.png"> Moon rise: </p>
-              <p><img src="https://png.icons8.com/ios/50/ffffff/full-moon.png"> Moon set: </p>
+              <p><img src="https://png.icons8.com/ios-glyphs/50/ffffff/summer.png" @error="handleError" alt=""> Sunrise: </p>
+              <p><img src="https://png.icons8.com/windows/50/ffffff/sunset.png" @error="handleError" alt=""> Sunset: </p>
+              <p><img src="https://png.icons8.com/android/50/ffffff/bright-moon.png" @error="handleError" alt=""> Moon rise: </p>
+              <p><img src="https://png.icons8.com/ios/50/ffffff/full-moon.png" @error="handleError" alt=""> Moon set: </p>
+              <div v-show="isImageBroken" class="custome-placeholder">unable to load the images</div>
         </div>
             <div class="sec-4">
               <p>{{info.forecast.forecastday[0].astro.sunrise}}</p>
@@ -45,8 +46,16 @@ export default {
   name: "daily-forecast",
   data() {
     return {
-      info: null
+      info: null,
+      isImageBroken: false
     };
+  },
+  methods: {
+    handleError: function(e) {
+      this.isImageBroken = true;
+      e.target.src = 'https://img.icons8.com/ios-glyphs/40/ffffff/full-image.png'
+      e.target.alt = 'unable to load the image'
+    }
   },
   mounted() {
     axios
@@ -107,5 +116,12 @@ img {
   width: 1px;
   min-height: 100px;
   background: #fff;
+}
+
+.custome-placeholder {
+  background-color: rgb(247, 49, 49);
+  color: #fff;
+  padding: 10px;
+  border-radius: 5px;
 }
 </style>
