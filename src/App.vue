@@ -3,6 +3,7 @@
     <localInfo />
     <seaInfo />
     <dailyForecast />
+    <galleryCarosel />
   </div>
 </template>
 
@@ -11,6 +12,8 @@ import HelloWorld from "./components/HelloWorld.vue";
 import localInfo from "./components/local-info.vue";
 import seaInfo from "./components/sea-info.vue";
 import dailyForecast from "./components/daily-forecast.vue";
+import galleryCarosel from "./components/gallery-carosel.vue"
+
 
 export default {
   name: "app",
@@ -18,7 +21,8 @@ export default {
     HelloWorld,
     localInfo,
     seaInfo,
-    dailyForecast
+    dailyForecast,
+    galleryCarosel
   }
 };
 </script>
